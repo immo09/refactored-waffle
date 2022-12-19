@@ -1,0 +1,76 @@
+import datetime
+
+class FitnessData:
+  def __init__(self, num_steps, num_calories_burned, num_active_minutes, date=datetime.datetime.now()):
+    self.num_steps = num_steps
+    self.num_calories_burned = num_calories_burned
+    self.num_active_minutes = num_active_minutes
+    self.date = date
+    
+  def to_dict(self):
+    return {
+      "num_steps": self.num_steps,
+      "num_calories_burned": self.num_calories_burned,
+      "num_active_minutes": self.num_active_minutes,
+      "date": self.date.isoformat()
+    }
+
+class MealPlan:
+  def __init__(self, breakfast, lunch, dinner, date=datetime.datetime.now()):
+    self.breakfast = breakfast
+    self.lunch = lunch
+    self.dinner = dinner
+    self.date = date
+    
+  def to_dict(self):
+    return {
+      "breakfast": self.breakfast,
+      "lunch": self.lunch,
+      "dinner": self.dinner,
+      "date": self.date.isoformat()
+    }
+
+class GroceryList:
+  def __init__(self, items):
+    self.items = items
+    
+  def add_item(self, item):
+    self.items.append(item)
+    
+  def remove_item(self, item):
+    self.items.remove(item)
+    
+  def to_dict(self):
+    return {
+      "items": self.items
+    }
+
+class UserProfile:
+  def __init__(self, name, age, weight, height, fitness_goals):
+    self.name = name
+    self.age = age
+    self.weight = weight
+    self.height = height
+    self.fitness_goals = fitness_goals
+    
+  def to_dict(self):
+    return {
+      "name": self.name,
+      "age": self.age,
+      "weight": self.weight,
+      "height": self.height,
+      "fitness_goals": self.fitness_goals
+    }
+
+class App:
+  def __init__(self, fitness_data=[], meal_plans=[], grocery_lists=[], user_profiles=[]):
+    self.fitness_data = fitness_data
+    self.meal_plans = meal_plans
+    self.grocery_lists = grocery_lists
+    self.user_profiles = user_profiles
+    
+  def add_fitness_data(self, num_steps, num_calories_burned, num_active_minutes, date=datetime.datetime.now()):
+    data = FitnessData(num_steps, num_calories_burned, num_active_minutes, date)
+    self.fitness_data.append(data)
+    
+  def add_meal_plan(
